@@ -1,9 +1,9 @@
 
 import { Product } from './types';
 
-export const WHATSAPP_NUMBER = '2250101010101'; 
-export const DELIVERY_FREE_THRESHOLD = 500;
-export const DELIVERY_LOCATIONS = "Campus 1, Campus 2 et Commerce";
+export const WHATSAPP_NUMBER = '2250596648550'; 
+export const DELIVERY_FREE_THRESHOLD = 1500;
+export const DELIVERY_ZONES_GRATUITES = "Campus 1, Campus 2 et Commerce";
 
 export const DEFAULT_IMAGES = {
   baca: 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=400',
@@ -17,10 +17,10 @@ export const DEFAULT_IMAGES = {
 };
 
 export const MATIN_PRODUCTS: Product[] = [
-  { id: 'baca', name: 'Le Baka', price: 200, image: DEFAULT_IMAGES.baca, desc: 'Bouillie de mil traditionnelle' },
-  { id: 'galette', name: 'Galettes', price: 100, image: DEFAULT_IMAGES.galette, desc: 'Galettes de farine frites' },
-  { id: 'gateau', name: 'Gâteaux Coco', price: 50, image: DEFAULT_IMAGES.gateau, desc: 'Beignets sucrés' },
-  { id: 'bissap', name: 'Bissap Glacé', price: 250, image: DEFAULT_IMAGES.bissap, desc: 'Jus de fleurs d\'hibiscus' },
+  { id: 'baca', name: 'Le Baka', price: 100, image: DEFAULT_IMAGES.baca, desc: 'Bouillie de mil (Sans Galette ça marche pas !)' },
+  { id: 'galette', name: 'Galettes', price: 200, image: DEFAULT_IMAGES.galette, desc: 'Galettes de farine (Le Compagnon du Baka)' },
+  { id: 'gateau', name: 'Gâteaux Farine', price: 150, image: DEFAULT_IMAGES.gateau, desc: 'Gâteaux salés (Sans Bissap ça marche pas !)' },
+  { id: 'bissap', name: 'Bissap Glacé', price: 200, image: DEFAULT_IMAGES.bissap, desc: 'Jus d\'hibiscus (Sans Gâteaux ça marche pas !)' },
 ];
 
 export const MIDI_PRODUCTS: Product[] = [
@@ -29,13 +29,24 @@ export const MIDI_PRODUCTS: Product[] = [
 ];
 
 export const SOIR_PRODUCTS: Product[] = [
-  { id: 'porc', name: 'Porc au Four', price: 1000, image: DEFAULT_IMAGES.porc, desc: 'Viande grillée assaisonnée' },
-  { id: 'panini', name: 'Panini Chaud', price: 1500, image: DEFAULT_IMAGES.panini, desc: 'Sandwich pressé garni' }
+  { id: 'porc', name: 'Porc au Four', price: 600, image: DEFAULT_IMAGES.porc, desc: 'Viande grillée assaisonnée' },
+  { id: 'panini', name: 'Panini Chaud', price: 500, image: DEFAULT_IMAGES.panini, desc: 'Sandwich pressé garni' }
 ];
 
 export const DEBOUT_ATTIEKE = [{ label: '300 F', value: 300 }, { label: '400 F', value: 400 }, { label: '500 F', value: 500 }];
 export const DEBOUT_POISSON = [{ label: '800 F', value: 800 }, { label: '1000 F', value: 1000 }, { label: '1200 F', value: 1200 }, { label: '1500 F', value: 1500 }];
 export const COULE_ATTIEKE = [{ label: '100 F', value: 100 }, { label: '150 F', value: 150 }, { label: '200 F', value: 200 }];
 export const COULE_POISSON = [{ label: '200 F', value: 200 }, { label: '300 F', value: 300 }, { label: '400 F', value: 400 }];
-export const PORC_OPTIONS = [{ label: '500 F', value: 500 }, { label: '1000 F', value: 1000 }, { label: '2000 F', value: 2000 }];
-export const PANINI_OPTIONS = [{ label: 'Poulet', value: 1500 }, { label: 'Viande', value: 1500 }, { label: 'Mixte', value: 2000 }];
+
+export const PORC_OPTIONS = [
+  { label: '600 F', value: 600 }, 
+  { label: '1000 F', value: 1000 }, 
+  { label: '1500 F', value: 1500 }, 
+  { label: '2000 F', value: 2000 }
+];
+
+export const PANINI_OPTIONS = [
+  { label: 'Poulet', value: 500 }, 
+  { label: 'Viande', value: 500 }, 
+  { label: 'Mixte', value: 1000 }
+];

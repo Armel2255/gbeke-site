@@ -1,5 +1,5 @@
 
-import { Product, ConfigOption } from './types';
+import { Product } from './types';
 
 export const WHATSAPP_NUMBER = '2250101010101'; 
 export const DELIVERY_FREE_THRESHOLD = 500;
@@ -17,41 +17,25 @@ export const DEFAULT_IMAGES = {
 };
 
 export const MATIN_PRODUCTS: Product[] = [
-  { id: 'baca', name: 'Le Baka', price: 200, image: DEFAULT_IMAGES.baca, desc: 'Bouillie de mil traditionnelle', isAvailable: true },
-  { id: 'galette', name: 'Galettes', price: 100, image: DEFAULT_IMAGES.galette, desc: 'Galettes de farine frites', isAvailable: true },
-  { id: 'gateau', name: 'Gâteaux Coco', price: 50, image: DEFAULT_IMAGES.gateau, desc: 'Beignets sucrés', isAvailable: true },
-  { id: 'bissap', name: 'Bissap Glacé', price: 250, image: DEFAULT_IMAGES.bissap, desc: 'Jus de fleurs d\'hibiscus', isAvailable: true },
+  { id: 'baca', name: 'Le Baka', price: 200, image: DEFAULT_IMAGES.baca, desc: 'Bouillie de mil traditionnelle' },
+  { id: 'galette', name: 'Galettes', price: 100, image: DEFAULT_IMAGES.galette, desc: 'Galettes de farine frites' },
+  { id: 'gateau', name: 'Gâteaux Coco', price: 50, image: DEFAULT_IMAGES.gateau, desc: 'Beignets sucrés' },
+  { id: 'bissap', name: 'Bissap Glacé', price: 250, image: DEFAULT_IMAGES.bissap, desc: 'Jus de fleurs d\'hibiscus' },
 ];
 
 export const MIDI_PRODUCTS: Product[] = [
-  { id: 'garba_debout', name: 'Garba "Les Debout"', price: 1500, image: DEFAULT_IMAGES.garba_debout, desc: 'Portion VIP pour les boss', isAvailable: true },
-  { id: 'garba_coule', name: 'Garba "Les Coulé"', price: 400, image: DEFAULT_IMAGES.garba_coule, desc: 'Le sauvetage des étudiants et débrouillards', isAvailable: true }
+  { id: 'garba_debout', name: 'Garba "Les Debout"', price: 1500, image: DEFAULT_IMAGES.garba_debout, desc: 'Portion VIP pour les boss' },
+  { id: 'garba_coule', name: 'Garba "Les Coulé"', price: 400, image: DEFAULT_IMAGES.garba_coule, desc: 'Le sauvetage des étudiants' }
 ];
 
 export const SOIR_PRODUCTS: Product[] = [
-  { id: 'porc', name: 'Porc au Four', price: 1000, image: DEFAULT_IMAGES.porc, desc: 'Viande grillée assaisonnée', isAvailable: true },
-  { id: 'panini', name: 'Panini Chaud', price: 1500, image: DEFAULT_IMAGES.panini, desc: 'Sandwich pressé garni', isAvailable: true }
+  { id: 'porc', name: 'Porc au Four', price: 1000, image: DEFAULT_IMAGES.porc, desc: 'Viande grillée assaisonnée' },
+  { id: 'panini', name: 'Panini Chaud', price: 1500, image: DEFAULT_IMAGES.panini, desc: 'Sandwich pressé garni' }
 ];
 
-// Options de configuration GARBA DEBOUT
-export const DEBOUT_ATTIEKE = [
-  { label: '300 F', value: 300 }, { label: '400 F', value: 400 }, { label: '500 F', value: 500 }
-];
-export const DEBOUT_POISSON = [
-  { label: '800 F', value: 800 }, { label: '1000 F', value: 1000 }, { label: '1200 F', value: 1200 }, { label: '1500 F', value: 1500 }
-];
-
-// Options de configuration GARBA COULÉ
-export const COULE_ATTIEKE = [
-  { label: '100 F', value: 100 }, { label: '150 F', value: 150 }, { label: '200 F', value: 200 }
-];
-export const COULE_POISSON = [
-  { label: '200 F', value: 200 }, { label: '300 F', value: 300 }, { label: '400 F', value: 400 }
-];
-
-export const PORC_OPTIONS = [
-  { label: '500 F', value: 500 }, { label: '1000 F', value: 1000 }, { label: '2000 F', value: 2000 }
-];
-export const PANINI_OPTIONS = [
-  { label: 'Poulet', value: 1500 }, { label: 'Viande Hachée', value: 1500 }, { label: 'Mixte', value: 2000 }
-];
+export const DEBOUT_ATTIEKE = [{ label: '300 F', value: 300 }, { label: '400 F', value: 400 }, { label: '500 F', value: 500 }];
+export const DEBOUT_POISSON = [{ label: '800 F', value: 800 }, { label: '1000 F', value: 1000 }, { label: '1200 F', value: 1200 }, { label: '1500 F', value: 1500 }];
+export const COULE_ATTIEKE = [{ label: '100 F', value: 100 }, { label: '150 F', value: 150 }, { label: '200 F', value: 200 }];
+export const COULE_POISSON = [{ label: '200 F', value: 200 }, { label: '300 F', value: 300 }, { label: '400 F', value: 400 }];
+export const PORC_OPTIONS = [{ label: '500 F', value: 500 }, { label: '1000 F', value: 1000 }, { label: '2000 F', value: 2000 }];
+export const PANINI_OPTIONS = [{ label: 'Poulet', value: 1500 }, { label: 'Viande', value: 1500 }, { label: 'Mixte', value: 2000 }];

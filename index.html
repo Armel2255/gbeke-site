@@ -4,11 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#F9FAFB">
   <title>Gbêkê Street Food</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script>
     tailwind.config = {
@@ -17,8 +18,8 @@
           colors: {
             brand: {
               background: '#F9FAFB',
-              primary: '#F97316', /* Orange */
-              secondary: '#16A34A', /* Vert */
+              primary: '#F97316',
+              secondary: '#16A34A',
               text: '#1F2937',
               muted: '#6B7280',
               accent: '#FFFFFF'
@@ -40,31 +41,27 @@
     .custom-shadow {
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
     }
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .flag-gradient {
       background: linear-gradient(to right, #F97316 33%, #FFFFFF 33%, #FFFFFF 66%, #16A34A 66%);
       height: 4px;
       width: 100%;
     }
   </style>
-<script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4",
-    "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
+  <script type="importmap">
+  {
+    "imports": {
+      "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+      "react/": "https://esm.sh/react@^19.2.4/",
+      "react": "https://esm.sh/react@^19.2.4",
+      "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
+    }
   }
-}
-</script>
+  </script>
 </head>
 <body class="text-brand-text">
   <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
 </body>
 </html>

@@ -1,151 +1,62 @@
 
 import React, { useState, useEffect } from 'react';
-import { ConfigOption, Order } from '../types';
-import { WHATSAPP_NUMBER, DELIVERY_FREE_THRESHOLD, DELIVERY_LOCATIONS } from '../constants';
+import { Order, ConfigOption } from '../types';
+import { WHATSAPP_NUMBER, DELIVERY_FREE_THRESHOLD } from '../constants';
 
-interface ConfiguratorCardProps {
-  id: string;
-  title: string;
-  image: string;
-  type: 'midi' | 'soir';
-  optionsA: {
-    label: string;
-    items: ConfigOption[];
-  };
-  optionsB: {
-    label: string;
-    items: ConfigOption[];
-  };
-  generateMessage: (valA: number, valB: number) => string;
+interface Props {
+  id: string; title: string; image: string; type: 'midi' | 'soir';
+  optionsA: { label: string; items: ConfigOption[] };
+  optionsB: { label: string; items: ConfigOption[] };
+  generateMessage: (a: number, b: number) => string;
 }
 
-const ConfiguratorCard: React.FC<ConfiguratorCardProps> = ({ 
-  id,
-  title, 
-  image, 
-  type,
-  optionsA, 
-  optionsB,
-  generateMessage 
-}) => {
-  const [valA, setValA] = useState<number>(optionsA.items[0].value);
-  const [valB, setValB] = useState<number>(optionsB.items[0].value);
-  const [total, setTotal] = useState<number>(0);
-
-  useEffect(() => {
-    setTotal(valA + valB);
-  }, [valA, valB]);
-
-  const saveOrder = () => {
-    const orders: Order[] = JSON.parse(localStorage.getItem('gbeke_orders') || '[]');
-    const newOrder: Order = {
-      id: Math.random().toString(36).substr(2, 9),
-      items: `${title} (${valA} + ${valB})`,
-      total: total,
-      timestamp: Date.now(),
-      type: type
-    };
-    localStorage.setItem('gbeke_orders', JSON.stringify([newOrder, ...orders]));
-  };
+const ConfiguratorCard: React.FC<Props> = ({ id, title, image, type, optionsA, optionsB, generateMessage }) => {
+  const [valA, setValA] = useState(optionsA.items[0].value);
+  const [valB, setValB] = useState(optionsB.items[0].value);
+  const total = valA + valB;
 
   const handleOrder = () => {
-    saveOrder();
-    let text = generateMessage(valA, valB);
-    if (total >= DELIVERY_FREE_THRESHOLD) {
-      text += ` (Livraison gratuite demandée pour Campus/Commerce)`;
-    }
-    const message = encodeURIComponent(text);
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
+    const orders = JSON.parse(localStorage.getItem('gbeke_orders') || '[]');
+    const newOrder: Order = { id: Math.random().toString(36).substr(2,9), items: title, total, timestamp: Date.now(), type };
+    localStorage.setItem('gbeke_orders', JSON.stringify([newOrder, ...orders]));
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(generateMessage(valA, valB))}`, '_blank');
   };
 
-  const isFreeDelivery = total >= DELIVERY_FREE_THRESHOLD;
-
   return (
-    <div className="bg-white rounded-[2.5rem] overflow-hidden custom-shadow border border-gray-100">
-      <div className="h-48 w-full relative">
-        <img 
-          src={image} 
-          alt={title} 
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-text/90 via-transparent to-transparent flex items-end p-6">
-          <h3 className="text-white text-2xl font-black italic uppercase tracking-tighter">{title}</h3>
+    <div className="bg-white rounded-[2.5rem] overflow-hidden custom-shadow border border-gray-100 p-2">
+      <div className="h-44 rounded-[2rem] overflow-hidden relative">
+        <img src={image} className="w-full h-full object-cover" alt={title} loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+          <h3 className="text-white font-black text-xl italic uppercase tracking-tighter">{title}</h3>
         </div>
       </div>
-
-      <div className="p-6 space-y-8">
-        <div className="space-y-4">
-          <label className="text-[10px] font-black text-brand-muted uppercase tracking-[0.2em] flex items-center">
-            <span className="w-1.5 h-1.5 bg-brand-primary rounded-full mr-2"></span>
-            {optionsA.label}
-          </label>
+      <div className="p-6 space-y-6">
+        <div className="space-y-3">
+          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{optionsA.label}</p>
           <div className="flex flex-wrap gap-2">
-            {optionsA.items.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => setValA(item.value)}
-                className={`flex-1 min-w-[80px] py-4 px-2 rounded-2xl border-2 text-xs font-black transition-all active:scale-95 ${
-                  valA === item.value 
-                  ? 'bg-brand-primary border-brand-primary text-white shadow-lg' 
-                  : 'bg-white border-gray-100 text-brand-muted hover:border-brand-primary/20'
-                }`}
-              >
-                {item.label}
+            {optionsA.items.map(i => (
+              <button key={i.label} onClick={() => setValA(i.value)} className={`flex-1 py-3 px-2 rounded-xl border-2 text-[11px] font-black transition-all ${valA === i.value ? 'bg-brand-primary border-brand-primary text-white' : 'border-gray-50 text-gray-400'}`}>
+                {i.label}
               </button>
             ))}
           </div>
         </div>
-
-        <div className="space-y-4">
-          <label className="text-[10px] font-black text-brand-muted uppercase tracking-[0.2em] flex items-center">
-            <span className="w-1.5 h-1.5 bg-brand-secondary rounded-full mr-2"></span>
-            {optionsB.label}
-          </label>
+        <div className="space-y-3">
+          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{optionsB.label}</p>
           <div className="grid grid-cols-2 gap-2">
-            {optionsB.items.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => setValB(item.value)}
-                className={`py-4 px-2 rounded-2xl border-2 text-xs font-black transition-all active:scale-95 ${
-                  valB === item.value 
-                  ? 'bg-brand-secondary border-brand-secondary text-white shadow-lg' 
-                  : 'bg-white border-gray-100 text-brand-muted hover:border-brand-secondary/20'
-                }`}
-              >
-                {item.label}
+            {optionsB.items.map(i => (
+              <button key={i.label} onClick={() => setValB(i.value)} className={`py-3 px-2 rounded-xl border-2 text-[11px] font-black transition-all ${valB === i.value ? 'bg-brand-secondary border-brand-secondary text-white' : 'border-gray-50 text-gray-400'}`}>
+                {i.label}
               </button>
             ))}
           </div>
         </div>
-
-        <div className="pt-6 border-t-2 border-dashed border-gray-100">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex flex-col">
-              <span className="text-[9px] font-black uppercase text-brand-muted tracking-widest">Total à payer</span>
-              <div className="flex items-center space-x-2">
-                <span className="text-3xl font-black text-brand-text leading-none">{total} <span className="text-xs font-bold text-brand-primary">F</span></span>
-              </div>
-            </div>
-            {isFreeDelivery && (
-              <div className="bg-brand-secondary/10 border border-brand-secondary/20 px-3 py-1.5 rounded-full animate-bounce">
-                <span className="text-[10px] font-black text-brand-secondary uppercase tracking-tight">
-                  <i className="fa-solid fa-truck-fast mr-1"></i> Livraison Offerte
-                </span>
-              </div>
-            )}
+        <div className="pt-6 border-t-2 border-dashed border-gray-50 flex items-center justify-between">
+          <div>
+            <p className="text-[9px] font-black text-gray-400 uppercase">Total</p>
+            <p className="text-2xl font-black">{total} F</p>
           </div>
-          
-          <button 
-            onClick={handleOrder}
-            className="w-full bg-brand-secondary text-white h-16 rounded-full font-black flex items-center justify-center space-x-3 active:scale-95 transition-all shadow-xl shadow-brand-secondary/30"
-          >
-            <span className="text-sm uppercase tracking-tighter">Passer la commande</span>
-            <i className="fa-brands fa-whatsapp text-2xl"></i>
-          </button>
-          
-          <p className="text-[9px] text-center text-brand-muted mt-3 font-medium">
-            Gratuit pour {DELIVERY_LOCATIONS} dès {DELIVERY_FREE_THRESHOLD} F
-          </p>
+          <button onClick={handleOrder} className="bg-brand-secondary text-white py-4 px-8 rounded-2xl font-black text-xs uppercase shadow-xl active:scale-95 transition-all">Commander</button>
         </div>
       </div>
     </div>
